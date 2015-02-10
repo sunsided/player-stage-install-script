@@ -47,11 +47,9 @@ if [ -x "$(command -v git)" ]; then
 	git clone --single-branch --branch $stage_tag --depth 1 https://github.com/rtv/Stage.git Stage-$stage_version
 
 	# some fixes for broken tags
-	if [ "$stage_tag" = "v4.1.1" ]; then
-		echo "- adding v4.1.1 CMakeLists.txt fix for model_getset and model_load"
-		sed -i 's/[^#]model_getset.cc/#model_getset.cc/g' Stage-$stage_version/libstage/CMakeLists.txt
-		sed -i 's/[^#]model_load.cc/#model_load.cc/g' Stage-$stage_version/libstage/CMakeLists.txt
-	fi
+	echo "- adding v4.1.1 CMakeLists.txt fix for model_getset and model_load"
+	sed -i 's/[^#]model_getset.cc/#model_getset.cc/g' Stage-$stage_version/libstage/CMakeLists.txt
+	sed -i 's/[^#]model_load.cc/#model_load.cc/g' Stage-$stage_version/libstage/CMakeLists.txt
 else
 	echo "- selected wget strategy for stage"
 	wget https://github.com/rtv/Stage/archive/v$stage_version.tar.gz
