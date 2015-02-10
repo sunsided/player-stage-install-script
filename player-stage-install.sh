@@ -31,6 +31,7 @@ cd src
 echo "Getting player source files..."
 if [ -x "$(command -v svn)" ]; then
 	echo "- selected subversion strategy for player"
+	rm -rf player-$player_version 2> /dev/null
 	svn co https://svn.code.sf.net/p/playerstage/svn/code/player/trunk/@$player_revision player-$player_version
 else
 	echo "- selected wget strategy for player"
@@ -42,6 +43,7 @@ fi
 echo "Getting stage source files..."
 if [ -x "$(command -v git)" ]; then
 	echo "- selected git strategy for stage"
+	rm -rf Stage-$stage_version 2> /dev/null
 	git clone --depth 1 https://github.com/rtv/Stage.git Stage-$stage_version
 	cd v$stage_version
 	git checkout tags/$stage_tag
