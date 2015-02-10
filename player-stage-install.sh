@@ -2,7 +2,9 @@
 
 #version variables
 stage_version="4.1.1"
+stage_tag="v4.1.1"
 player_version="3.0.2"
+player_revision="9142"
 
 #load data
 cmakelists=`cat CMakeLists.txt`
@@ -23,14 +25,30 @@ rm src/*.tar.gz.* 2> /dev/null
 cd src
 
 #get player and stage
-echo "Getting player/stage source files..."
-wget http://sourceforge.net/projects/playerstage/files/Player/$player_version/player-$player_version.tar.gz
-wget https://github.com/rtv/Stage/archive/v$stage_version.tar.gz
+echo "Getting player source files..."
+if [ -x "$(command -v svn)"]; then
+	echo "- selected subversion strategy for player"
+	svn co https://svn.code.sf.net/p/playerstage/svn/code/player/trunk/@$player_revision player-$player_version
+else
+	echo "- selected wget strategy for player"
+	wget http://sourceforge.net/projects/playerstage/files/Player/$player_version/player-$player_version.tar.gz
+	tar xvf player-$player_version.tar.gz
+fi
 
-#extract them both
-echo "Extracting..."
-tar xvf player-$player_version.tar.gz
-tar xvf v$stage_version.tar.gz
+#get stage
+echo "Getting stage source files..."
+if [ -x "$(command -v git)"]; then
+	echo "- selected git strategy for stage"
+	git clone https://github.com/rtv/Stage.git v$stage_version
+	cd v$stage_version
+	git checkout tags/$stage_tag
+	cd ..
+else
+	echo "- selected wget strategy for stage"
+	wget https://github.com/rtv/Stage/archive/v$stage_version.tar.gz
+	tar xvf v$stage_version.tar.gz
+fi
+
 
 #Patching Player
 echo "$patch_file" > ~/src/player-$player_version/server/drivers/shell/readlog.cc
