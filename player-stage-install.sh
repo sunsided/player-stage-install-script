@@ -46,6 +46,7 @@ if [ -x "$(command -v git)" ]; then
 	rm -rf Stage-$stage_version 2> /dev/null
 	git clone --depth 1 https://github.com/rtv/Stage.git Stage-$stage_version
 	cd v$stage_version
+	git fetch origin $stage_tag
 	git checkout tags/$stage_tag
 	cd ..
 else
