@@ -26,7 +26,7 @@ cd src
 
 #get player and stage
 echo "Getting player source files..."
-if [ -x "$(command -v svn)"]; then
+if [ -x "$(command -v svn)" ]; then
 	echo "- selected subversion strategy for player"
 	svn co https://svn.code.sf.net/p/playerstage/svn/code/player/trunk/@$player_revision player-$player_version
 else
@@ -37,7 +37,7 @@ fi
 
 #get stage
 echo "Getting stage source files..."
-if [ -x "$(command -v git)"]; then
+if [ -x "$(command -v git)" ]; then
 	echo "- selected git strategy for stage"
 	git clone https://github.com/rtv/Stage.git v$stage_version
 	cd v$stage_version
