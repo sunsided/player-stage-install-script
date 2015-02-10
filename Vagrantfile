@@ -28,9 +28,6 @@ Vagrant.configure(2) do |config|
     # use non-interactive mode for apt-get
     sed -i 's/^sudo apt-get install/sudo apt-get -y install/g' player-stage-install.sh
 
-    # use Stage 4.1.1 instead of 4.0.0
-    sed -i 's/^stage_version=\"4.0.0\"/stage_version=\"4.1.1\"/g' player-stage-install.sh
-
     # update-bash.sh is not used in this automated setup
     # we do it manually instead
     chmod -x update-bashrc.sh
