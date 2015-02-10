@@ -39,7 +39,7 @@ fi
 echo "Getting stage source files..."
 if [ -x "$(command -v git)" ]; then
 	echo "- selected git strategy for stage"
-	git clone https://github.com/rtv/Stage.git v$stage_version
+	git clone --depth 1 https://github.com/rtv/Stage.git v$stage_version
 	cd v$stage_version
 	git checkout tags/$stage_tag
 	cd ..
