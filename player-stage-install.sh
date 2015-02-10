@@ -45,7 +45,7 @@ if [ -x "$(command -v git)" ]; then
 	echo "- selected git strategy for stage"
 	rm -rf Stage-$stage_version 2> /dev/null
 	git clone --depth 1 https://github.com/rtv/Stage.git Stage-$stage_version
-	cd v$stage_version
+	cd Stage-$stage_version
 	git fetch origin $stage_tag
 	git checkout tags/$stage_tag
 	cd ..
