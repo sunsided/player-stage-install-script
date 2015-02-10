@@ -4,4 +4,4 @@
 paths=`cat paths.txt`
 echo "Updating bashrc file..."
 echo "$paths" >> ~/.bashrc
-exec bash
+source ~/.bashrc
