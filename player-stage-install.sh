@@ -8,9 +8,9 @@ player_version="3.0.2"
 cmakelists=`cat CMakeLists.txt`
 patch_file=`cat readlog_patch.cc`
 
-#install dependencies
-echo "Installing dependencies..."
-sudo apt-get install g++ pkg-config cmake libfltk1.1 libfltk1.1-dev freeglut3 freeglut3-dev libpng12-0 libpng12-dev libtool libltdl7 libltdl-dev libboost-thread-dev libboost-signals-dev libdb5.1-stl
+#install dependencies - unattended
+echo "Installing dependencies in unattended mode..."
+sudo apt-get -y install g++ pkg-config cmake libfltk1.1 libfltk1.1-dev freeglut3 freeglut3-dev libpng12-0 libpng12-dev libtool libltdl7 libltdl-dev libboost-thread-dev libboost-signals-dev libdb5.1-stl
 
 #make a directory to keep the source files
 echo "Preparing install directory..."
