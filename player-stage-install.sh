@@ -12,7 +12,7 @@ patch_file=`cat readlog_patch.cc`
 
 #install dependencies - unattended
 echo "Installing dependencies in unattended mode..."
-sudo apt-get -y install g++ pkg-config cmake libfltk1.1 libfltk1.1-dev freeglut3 freeglut3-dev libpng12-0 libpng12-dev libtool libltdl7 libltdl-dev libboost-thread-dev libboost-signals-dev libdb5.1-stl
+sudo apt-get -y install g++ pkg-config cmake libfltk1.1 libfltk1.1-dev freeglut3 freeglut3-dev libpng12-0 libpng12-dev libtool libltdl7 libltdl-dev libboost-thread-dev libboost-signals-dev libdb5.1-stl libjpeg-dev
 
 # source the library paths
 source paths.txt
@@ -44,11 +44,7 @@ echo "Getting stage source files..."
 if [ -x "$(command -v git)" ]; then
 	echo "- selected git strategy for stage"
 	rm -rf Stage-$stage_version 2> /dev/null
-	git clone --depth 1 https://github.com/rtv/Stage.git Stage-$stage_version
-	cd Stage-$stage_version
-	git fetch origin $stage_tag
-	git checkout tags/$stage_tag
-	cd ..
+	git clone --single-branch --branch $stage_tag --depth 1 https://github.com/rtv/Stage.git Stage-$stage_version
 else
 	echo "- selected wget strategy for stage"
 	wget https://github.com/rtv/Stage/archive/v$stage_version.tar.gz
