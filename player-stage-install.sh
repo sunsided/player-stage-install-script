@@ -17,6 +17,9 @@ sudo apt-get -y install g++ pkg-config cmake libfltk1.1 libfltk1.1-dev freeglut3
 # source the library paths
 source paths.txt
 
+#memorize directory
+pushd .
+
 #make a directory to keep the source files
 echo "Preparing install directory..."
 mkdir src 2> /dev/null
@@ -49,9 +52,8 @@ else
 	tar xvf v$stage_version.tar.gz
 fi
 
-
 #Patching Player
-echo "$patch_file" > ~/src/player-$player_version/server/drivers/shell/readlog.cc
+echo "$patch_file" > player-$player_version/server/drivers/shell/readlog.cc
 
 #make player
 echo "Building player..."
@@ -67,7 +69,7 @@ cd Stage-$stage_version
 
 #copy updated make file to Stage 4.*
 echo "Preparing stage for install..."
-echo "$cmakelists" > ~/src/Stage-$stage_version/libstage/CMakeLists.txt
+echo "$cmakelists" > libstage/CMakeLists.txt
 
 #make stage
 echo "Building stage..."
@@ -76,3 +78,5 @@ cd build
 cmake ..
 sudo make install
 
+#go back to the home directory
+popd
