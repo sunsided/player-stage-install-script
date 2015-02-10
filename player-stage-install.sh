@@ -14,8 +14,8 @@ sudo apt-get install g++ pkg-config cmake libfltk1.1 libfltk1.1-dev freeglut3 fr
 
 #make a directory to keep the source files
 echo "Preparing install directory..."
-mkdir ~/src
-cd ~/src
+mkdir src
+cd src
 
 #get player and stage
 echo "Getting player/stage source files..."
