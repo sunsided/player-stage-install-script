@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #version variables
-stage_version="4.0.0"
+stage_version="4.1.1"
 player_version="3.0.2"
 
 #load data
