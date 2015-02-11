@@ -1,30 +1,46 @@
 Player/Stage Install Script
 =========================== 
 
-A couple of bash scripts / a Vagrantfile to automate the installation process of Player 3 and Stage 4 for Ubuntu.
+A couple of bash scripts to automate the installation process of Player 3 and Stage 4 for Ubuntu, as well as the `Vagrantfile` used to build the [vagrant box](https://atlas.hashicorp.com/sunside/boxes/playerstage "playerstage vagrant box").
 
-### What's New
+## tl;dr: I just want to use Player/Stage 
+
+To jump-start, see **Installing via vagrant** below. You do not need to clone this repo.
+
+## What's New
 
 This is a fork of the original Player/Stage Install Script at [samueljackson92/player-stage-install-script](https://github.com/samueljackson92/player-stage-install-script). It contains the following changes:
 
 * **Player 3.0.2** and **Stage 4.1.1** are used
-* A `Vagrantfile` has been added to simplify installation in a Ubuntu-based virtual machine using [**Vagrant**](https://www.vagrantup.com/).
+* A `Vagrantfile` has been added to simplify installation in a Ubuntu-based virtual machine using [**Vagrant**](https://www.vagrantup.com/). However, a preconfigured box [is already available](https://atlas.hashicorp.com/sunside/boxes/playerstage "playerstage vagrant box").
 * The install script now uses git and subversion to pull the sources instead of using wget if these tools are installed. This should counteract SourceForge's wonky download behavior.
 
 ## Installing via vagrant (recommended)
 
-In order to quickly set up the Player/Stage installation, simply execute
+To use the preconfigured Player/Stage box, first install [Vagrant](https://www.vagrantup.com/). Next, create a `Vagrantfile` with the following content in your project root:
+
+```ruby
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "sunside/playerstage"
+end
+```
+
+To bring up the virtual machine, type:
 
 ```bash
 $ vagrant up
 ```
 
-To connect to the virtual machine, type
+which will download the box (if necessary) and start the VM. To connect to it, type:
 
 ```bash
 $ vagrant ssh
 ```
 
+You can then execute `player` and `stage` commands.
 To shut down the virtual machine (without deleting it), type
 
 ```bash
