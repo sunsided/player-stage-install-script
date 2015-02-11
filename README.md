@@ -41,6 +41,9 @@ $ vagrant ssh
 ```
 
 You can then execute `player` and `stage` commands.
+
+`g++`, `make`, `cmake` etc. are already installed. By default, Vagrant will mount your current working directory to the `/vagrant` directory within the box. In the easiest case, you just `cd /vagrant` and build your project.
+
 To shut down the virtual machine (without deleting it), type
 
 ```bash
